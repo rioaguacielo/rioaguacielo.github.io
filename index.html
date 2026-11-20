@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Design Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Portfolio — Editorial, Book & Web</title>
+  <!-- 웹폰트: Pretendard & Playfair Display -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #f8f9fa;
+      --bg-color: #faf9f6;       /* 따뜻한 종이 질감의 미색 배경 */
       --card-bg: #ffffff;
-      --text-main: #111111;
-      --text-sub: #666666;
-      --accent: #222222;
-      --border: #eaeaea;
-      --radius: 12px;
-      --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      --shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.1);
+      --text-main: #181818;
+      --text-muted: #666666;
+      --accent: #d9a01b;         /* 따뜻한 웜 옐로우 포인트 */
+      --border-color: #e5e2dc;
+      --max-width: 1200px;
     }
 
     * {
@@ -25,373 +25,263 @@
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    /* Header */
+    /* 상단 내비게이션 */
     header {
-      padding: 80px 0 40px;
-      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 249, 246, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
     }
 
-    header h1 {
-      font-size: 2.2rem;
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 12px;
     }
 
-    header p {
-      color: var(--text-sub);
-      font-size: 1.05rem;
+    .logo span {
+      color: var(--accent);
     }
 
-    /* Filter Navigation */
-    .filter-nav {
+    nav ul {
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 48px;
+      gap: 2rem;
+      list-style: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* 히어로 섹션 */
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 4.5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      max-width: 820px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    /* 포트폴리오 필터 & 그리드 */
+    .work-section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .filter-bar {
+      display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
     }
 
     .filter-btn {
-      padding: 10px 22px;
-      border: 1px solid var(--border);
-      background-color: var(--card-bg);
-      color: var(--text-sub);
-      border-radius: 30px;
-      font-size: 0.95rem;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
       font-weight: 500;
+      color: var(--text-muted);
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .filter-btn:hover {
-      border-color: var(--accent);
-      color: var(--text-main);
-    }
-
+    .filter-btn:hover,
     .filter-btn.active {
-      background-color: var(--accent);
+      background: var(--text-main);
       color: #ffffff;
-      border-color: var(--accent);
+      border-color: var(--text-main);
     }
 
-    /* Portfolio Grid */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 32px;
-      padding-bottom: 80px;
+      gap: 2.5rem;
     }
 
-    .card {
-      background-color: var(--card-bg);
-      border-radius: var(--radius);
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
       display: flex;
       flex-direction: column;
     }
 
-    .card:hover {
+    .project-card:hover {
       transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
     }
 
-    .card.hidden {
+    .project-card.hidden {
       display: none;
     }
 
-    .card-thumb {
+    .thumb-wrap {
       width: 100%;
       aspect-ratio: 4 / 3;
-      background-color: #e9ecef;
+      background: #ece9e1;
       overflow: hidden;
       position: relative;
     }
 
-    .card-thumb img {
+    .thumb-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
 
-    .card:hover .card-thumb img {
+    .project-card:hover .thumb-wrap img {
       transform: scale(1.04);
     }
 
     .card-body {
-      padding: 24px;
+      padding: 1.5rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .card-tag {
-      display: inline-block;
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--text-sub);
+      color: var(--accent);
+      margin-bottom: 0.5rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-bottom: 8px;
+    }
+
+    .card-year {
+      color: var(--text-muted);
+      font-weight: 400;
     }
 
     .card-title {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
     }
 
     .card-desc {
-      font-size: 0.95rem;
-      color: var(--text-sub);
-      line-height: 1.5;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      backdrop-filter: blur(4px);
-    }
-
-    .modal.open {
-      display: flex;
-    }
-
-    .modal-content {
-      background-color: var(--card-bg);
-      max-width: 720px;
-      width: 100%;
-      border-radius: var(--radius);
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
-      animation: fadeIn 0.25s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
+    /* 소개 및 연락처 섹션 */
+    .about-contact {
+      background: #f2efe9;
+      border-top: 1px solid var(--border-color);
+      padding: 5rem 2rem;
     }
 
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
+    .about-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
+
+    .about-box h2,
+    .contact-box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-box p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-tags {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      z-index: 10;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    .modal-img {
-      width: 100%;
-      max-height: 450px;
-      object-fit: cover;
-      background-color: #eee;
-    }
-
-    .modal-info {
-      padding: 32px;
-    }
-
-    .modal-info h2 {
-      font-size: 1.5rem;
-      margin: 8px 0 16px;
-    }
-
-    .modal-info p {
-      color: var(--text-sub);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-      color: var(--text-sub);
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 60px 0 32px; }
-      header h1 { font-size: 1.8rem; }
-      .portfolio-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <header>
-      <h1>DESIGN ARCHIVE</h1>
-      <p>편집디자인 &amp; 웹디자인 포트폴리오</p>
-    </header>
-
-    <!-- 카테고리 필터 버튼 -->
-    <nav class="filter-nav">
-      <button class="filter-btn active" data-filter="all">전체 (All)</button>
-      <button class="filter-btn" data-filter="editorial">편집디자인 (Editorial)</button>
-      <button class="filter-btn" data-filter="web">웹디자인 (Web)</button>
-    </nav>
-
-    <!-- 포트폴리오 카드 그리드 -->
-    <main class="portfolio-grid" id="portfolioGrid">
-      <!-- 카드 1: 편집디자인 -->
-      <article class="card" data-category="editorial" data-title="브랜드 매거진 <LOCAL VIEW> 편집" data-tag="Editorial Design" data-desc="지역 문화와 공간을 조명하는 계간지 <LOCAL VIEW>의 그리드 시스템 설계 및 본문 조판, 표지 아트디렉션을 담당했습니다." data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80">
-        <div class="card-thumb">
-          <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80" alt="매거진 편집 디자인">
-        </div>
-        <div class="card-body">
-          <div>
-            <span class="card-tag">Editorial</span>
-            <h2 class="card-title">브랜드 매거진 &lt;LOCAL VIEW&gt;</h2>
-            <p class="card-desc">계간지 그리드 시스템 설계 및 본문 타이포그래피 조판</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- 카드 2: 웹디자인 -->
-      <article class="card" data-category="web" data-title="커뮤니티 플랫폼 UI/UX 리뉴얼" data-tag="Web Design" data-desc="사용자 접근성과 정보 탐색 효율을 높이기 위한 반응형 웹 플랫폼 UI/UX 디자인 및 디자인 시스템 구축 프로젝트입니다." data-img="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80">
-        <div class="card-thumb">
-          <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="웹 UI/UX 디자인">
-        </div>
-        <div class="card-body">
-          <div>
-            <span class="card-tag">Web</span>
-            <h2 class="card-title">커뮤니티 플랫폼 UI/UX</h2>
-            <p class="card-desc">반응형 웹 인터페이스 설계 및 컴포넌트 디자인 시스템</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- 카드 3: 편집디자인 -->
-      <article class="card" data-category="editorial" data-title="전시 도록 & 리플렛 패키지" data-tag="Editorial Design" data-desc="현대 미술 기획전의 아카이브 도록과 3단 접지 리플렛 제작. 후가공(형압, 별색 인쇄)을 활용해 물성을 강조했습니다." data-img="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80">
-        <div class="card-thumb">
-          <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80" alt="도록 및 인쇄물 디자인">
-        </div>
-        <div class="card-body">
-          <div>
-            <span class="card-tag">Editorial</span>
-            <h2 class="card-title">기획전시 도록 &amp; 리플렛</h2>
-            <p class="card-desc">전시 아카이브 북 디자인 및 인쇄 후가공 디렉팅</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- 카드 4: 웹디자인 -->
-      <article class="card" data-category="web" data-title="라이프스타일 커머스 웹 구축" data-tag="Web Design" data-desc="제품의 무드를 돋보이게 하는 미니멀한 레이아웃과 직관적인 결제 동선을 적용한 이커머스 웹사이트 디자인입니다." data-img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80">
-        <div class="card-thumb">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="이커머스 웹사이트">
-        </div>
-        <div class="card-body">
-          <div>
-            <span class="card-tag">Web</span>
-            <h2 class="card-title">라이프스타일 커머스 웹</h2>
-            <p class="card-desc">브랜드 아이덴티티를 반영한 쇼핑몰 메인 및 상세 페이지</p>
-          </div>
-        </div>
-      </article>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 Design Portfolio. All rights reserved.</p>
-    </footer>
-  </div>
-
-  <!-- 상세보기 모달 -->
-  <div class="modal" id="projectModal">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose" aria-label="닫기">&times;</button>
-      <img src="" alt="" class="modal-img" id="modalImg">
-      <div class="modal-info">
-        <span class="card-tag" id="modalTag"></span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalDesc"></p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // 1. 카테고리 필터링 기능
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter');
-
-        cards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    // 2. 카드 클릭 시 상세 모달 열기
-    const modal = document.getElementById('projectModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalImg = document.getElementById('modalImg');
-    const modalTag = document.getElementById('modalTag');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        modalImg.src = card.getAttribute('data-img');
-        modalTag.textContent = card.getAttribute('data-tag');
-        modalTitle.textContent = card.getAttribute('data-title');
-        modalDesc.textContent = card.getAttribute('data-desc');
-        modal.classList.add('open');
-      });
-    });
-
-    modalClose.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('open');
-    });
-  </script>
-</body>
-</html>
+    .skill-tags span {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 0.35rem 0.85rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-
