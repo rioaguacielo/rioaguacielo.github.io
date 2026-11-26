@@ -1,0 +1,3 @@
+chicken.png https://static.onlinecdn.org/crontab_prod/1764555/1/1027/1127/8dmm1ynbhxrnzpvt-0/product-0-40ba44e9f8129aef6cf0533b69743246.png
+duck.png https://static.onlinecdn.org/crontab_prod/1764555/1/1027/1127/v8q9njnjbuwjyks8-0/product-0-cda8d87949dd86af4edfd9aa7e824dbf.png
+hwangchil.png https://static.onlinecdn.org/crontab_prod/1764555/1/1027/1127/vzzmydoz7sewtxyn-0/product-0-e868e6f71605b2f688c74f8541e6c06b.png

@@ -1,0 +1,26 @@
+name: fetch-menu-images
+on:
+  push:
+    paths: ['urls.txt']
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download images
+        run: |
+          mkdir -p images
+          while read -r name url; do
+            [ -z "$name" ] && continue
+            curl -fsSL "$url" -o "images/$name"
+          done < urls.txt
+          ls -la images
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add images
+          git commit -m "Add downloaded menu images" || echo "nothing to commit"
+          git push
